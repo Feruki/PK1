@@ -1,3 +1,5 @@
+package pk1.mv.fachlogik;
+
 import java.io.OutputStream;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -10,6 +12,12 @@ public abstract class Medium implements Serializable {
 	private static int idCounter = 0;
 	private static final long serialVersionUID = 56L;
 	
+	public Medium() {
+		this.id = idCounter++;
+		this.titel = "";
+		this.jahr = 0;
+	}
+
 	public Medium(String titel, int jahr) {
 		this.titel = titel;
 		this.jahr = jahr;

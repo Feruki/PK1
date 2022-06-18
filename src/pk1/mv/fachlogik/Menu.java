@@ -1,7 +1,11 @@
+package pk1.mv.fachlogik;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+
+import pk1.mv.datenhaltung.Medienverwaltung;
 
 public class Menu {
     private Scanner sc = new Scanner(System.in);

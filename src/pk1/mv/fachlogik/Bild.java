@@ -1,9 +1,16 @@
+package pk1.mv.fachlogik;
+
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Objects;
 
 public class Bild extends Medium {
 	public String ort;
+
+	public Bild() {
+		super();
+		this.ort = "";
+	}
 	
 	public Bild(String titel, int jahr, String ort) {
 		super(titel, jahr);
@@ -36,5 +43,10 @@ public class Bild extends Medium {
 	@Override
 	public int hashCode() {
 		return Objects.hash(super.hashCode(), ort);
+	}
+
+	@Override
+	public String toString() {
+		return String.format("ID = %d \"%s\" aufgenommen im Jahr %d in %s\n", this.id, this.titel, this.jahr, this.ort);
 	}
 }

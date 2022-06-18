@@ -1,3 +1,5 @@
+package pk1.mv.datenhaltung;
+
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,6 +10,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+
+import pk1.mv.fachlogik.Medium;
 
 
 public class Medienverwaltung {
@@ -29,7 +33,7 @@ public class Medienverwaltung {
         }
     }
 
-    public void sucheNeuesMedium() {
+    public Medium sucheNeuesMedium() {
         int max = 0;
         for(Medium m : medien) {
             if(m.getJahr() > max) {
@@ -38,9 +42,10 @@ public class Medienverwaltung {
         }
         for(Medium m : medien) {
             if(m.getJahr() == max) {
-                m.druckeDaten(System.out);
+                return m;
             }
         }
+        return null;
     }
 
     public double berechneErscheinungsjahr() {
@@ -55,10 +60,14 @@ public class Medienverwaltung {
         }
     }
 
+    public Iterator<Medium> iterator() {
+        return it = medien.iterator();
+    }
+
     public void zeigeMedienMitIterator() {
         Collections.sort(medien, (m1, m2) -> ((Integer) m1.getJahr()).compareTo(m2.getJahr()));
         
-        this.it = medien.iterator();
+        this.it = iterator();
 
         while(it.hasNext()) {
             it.next().druckeDaten(System.out);
@@ -66,7 +75,7 @@ public class Medienverwaltung {
     }
 
     public void sucheNeuesMediumMitIterator() {
-        this.it = medien.iterator();
+        this.it = iterator();
 
         Medium m = it.next();
         while(it.hasNext()) {
@@ -79,7 +88,7 @@ public class Medienverwaltung {
     }
 
     public double berechneErscheinungsjahrMitIterator() {
-        this.it = medien.iterator();
+        this.it = iterator();
 
         double summe = 0;
         while(it.hasNext()) {

@@ -1,3 +1,5 @@
+package pk1.mv.gui;
+
 import javafx.application.Application;
 import javafx.scene.control.MenuBar;
 import javafx.scene.Scene;
@@ -6,6 +8,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import pk1.mv.fachlogik.Audio;
+import pk1.mv.fachlogik.Bild;
 
 public class App extends Application {
     @Override

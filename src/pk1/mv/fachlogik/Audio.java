@@ -1,3 +1,5 @@
+package pk1.mv.fachlogik;
+
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Objects;
@@ -5,6 +7,12 @@ import java.util.Objects;
 public class Audio extends Medium {
 	public String interpret;
 	public int dauer;
+
+	public Audio() {
+		super();
+		this.interpret = "";
+		this.dauer = 0;
+	}
 	
 	public Audio(String titel, int jahr, String interpret, int dauer) {
 		super(titel, jahr);
@@ -48,5 +56,10 @@ public class Audio extends Medium {
 	@Override
 	public int hashCode() {
 		return Objects.hash(super.hashCode(), interpret, dauer);
+	}
+
+	@Override
+	public String toString() {
+		return String.format("ID = %d \"%s\" von %s aus %d Spieldauer: %d sek.\n", this.id, this.titel, this.interpret, this.jahr, this.dauer);
 	}
 }

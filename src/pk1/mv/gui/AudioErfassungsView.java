@@ -1,3 +1,7 @@
+package pk1.mv.gui;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,18 +13,21 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pk1.mv.fachlogik.Audio;
 
-public class BildErfassungsView extends Stage {
-    public BildErfassungsView(Bild b1, Stage primary) {
+public class AudioErfassungsView extends Stage {
+    public AudioErfassungsView(Audio a1, Stage primary) {
         super();
-        this.setTitle("Bild Erfassung");
+        this.setTitle("Audio Erfassung");
         this.initOwner(primary);
         this.initModality(Modality.WINDOW_MODAL);
 
         GridPane grid = new GridPane();
             TextField titel = new TextField();
             TextField jahr = new TextField();
-            TextField ort = new TextField();
+            TextField interpret = new TextField();
+            TextField dauer = new TextField();
+            
             grid.setAlignment(Pos.CENTER);
 
         HBox hb = new HBox();
@@ -37,11 +44,29 @@ public class BildErfassungsView extends Stage {
 
         grid.addRow(1, new Label("Titel"), titel);
         grid.addRow(2, new Label("Erscheinungsjahr"), jahr);
-        grid.addRow(3, new Label("Ort"), ort);
-        
+        grid.addRow(3, new Label("Interpret"), interpret);
+        grid.addRow(4, new Label("Dauer"), dauer);
+
         hb.getChildren().addAll(neu, abbrechen);
         bp.setBottom(hb);
         bp.setCenter(grid);
+
+        if(a1 != null) {
+            titel.setPromptText(a1.getTitel());
+            jahr.setPromptText(String.valueOf(a1.getJahr()));
+            interpret.setPromptText(a1.getInterpret());
+            dauer.setPromptText(String.valueOf(a1.getDauer()));
+
+            neu.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    a1.setJahr(Integer.parseInt(jahr.getText()));
+                    a1.setTitel(titel.getText());
+                    a1.setInterpret(interpret.getText());
+                    a1.setDauer(Integer.parseInt(dauer.getText()));
+                    close();
+                }
+            });
+        }
 
         this.setScene(new Scene(bp, 300, 250));
     }
